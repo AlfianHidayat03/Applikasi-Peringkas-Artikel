@@ -21,7 +21,7 @@ if st.button('Ringkas'):
     paragraphs = soup.find_all('p')
     article_text = ' '.join([p.get_text() for p in paragraphs])
     # Melakukan peringkasan
-    summary = summarize.text(article_text, max_length=130, min_length=30, do_sample=False)
+    summary = summarizer(article_text, max_length=130, min_length=30, do_sample=False)
 
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
