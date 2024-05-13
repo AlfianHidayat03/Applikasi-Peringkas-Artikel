@@ -11,6 +11,7 @@ st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
 # Input URL dari pengguna
+summarizer = pipeline("summarization")
 url = st.text_input('Masukkan URL artikel yang ingin diringkas:')
 if st.button('Ringkas'):
     # Mengambil teks dari URL
@@ -20,10 +21,9 @@ if st.button('Ringkas'):
     # Mengumpulkan teks dari elemen paragraf
     paragraphs = soup.find_all('p')
     article_text = ' '.join([p.get_text() for p in paragraphs])
-    
     # Melakukan peringkasan
-    summary = summarizer(article_text, max_length=130, min_length=30, do_sample=False)
-    st.text_area('')
+    summary = summarize.text(article_text, max_length=130, min_length=30, do_sample=False)
+
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
 
