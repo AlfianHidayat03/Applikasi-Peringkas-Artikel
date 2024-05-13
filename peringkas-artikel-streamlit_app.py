@@ -1,22 +1,23 @@
 import streamlit as st
 from io import StringIO
 import requests
+import urlib.request
 from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
 
-st.header('Selamat datang di Aplikasi Ringkkas.ID', divider='rainbow')
+st.header('Selamat Datang di Aplikasi Ringkkas.ID', divider='rainbow')
 # Judul Aplikasi
-st.title('Solusi meringkas Cepat, Tepat, dan Akurat')
+st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
 # Input URL
-url_input = st.text_input('Masukkan URL Artikel')
-
-# Fungsi untuk mengambil teks dari URL
-def get_text_from_url(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    return ' '.join([p.text for p in soup.find_all('p')])
+def scraped_data = urllib.request.urlopen('https://www.unicef.org/indonesia/id/pendidikan-dan-remaja')
+    article = scraped_data.read()
+    parsed_article = bs.BeautifulSoup(article,'lxml')
+    paragraphs = parsed_article.find_all('p')
+    article_text = ""
+    for p in paragraphs:
+        article_text += p.text
 
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
