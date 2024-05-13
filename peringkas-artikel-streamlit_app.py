@@ -1,6 +1,6 @@
 import streamlit as st
 from io import StringIO
-import re
+import request
 from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
@@ -23,7 +23,7 @@ url_input = st.text_input('Masukkan URL Artikel')
 
 # Fungsi untuk mengambil teks dari URL
 def get_text_from_url(url_input):
-    response = re.get(url_input)
+    response = request.get(url_input)
     soup = BeautifulSoup(response.text, 'html.parser')
     # Menggabungkan teks dari semua paragraf
     article_text = ' '.join([p.text for p in soup.find_all('p')])
