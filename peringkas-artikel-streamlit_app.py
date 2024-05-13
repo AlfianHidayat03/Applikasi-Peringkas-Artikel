@@ -6,10 +6,11 @@ from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
 
-st.header('Selamat Datang di Aplikasi Ringkkas.ID', divider='rainbow')
+st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 # Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
+#
 summarizer = pipeline("summarization")
 # Input URL dari pengguna
 url = st.text_input('Masukkan URL artikel yang ingin diringkas:')
