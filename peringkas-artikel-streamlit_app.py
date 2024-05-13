@@ -10,8 +10,6 @@ st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 # Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
-#
-summarizer = pipeline("summarization")
 # Input URL dari pengguna
 url = st.text_input('Masukkan URL artikel yang ingin diringkas:')
 if st.button('Ringkas'):
