@@ -41,8 +41,6 @@ def clean_text(text):
         else:
             st.error('Silakan masukkan URL yang valid.')
 
-if __name__ == "__main__":
-    main()
 #if st.button('Dapatkan Teks'):
 #    article_text = get_text_from_url(text)
 #   st.text_area('Teks Artikel:', article_text, height=250)
