@@ -1,7 +1,7 @@
 import streamlit as st
 from io import StringIO
 import requests
-import urlib.request
+from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
