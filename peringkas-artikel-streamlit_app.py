@@ -5,6 +5,10 @@ from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
 
+"""
+# Ringkas.ID
+"""
+
 # Judul Aplikasi
 st.title('Aplikasi Peringkas Teks')
 
