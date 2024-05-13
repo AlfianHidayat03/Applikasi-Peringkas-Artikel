@@ -5,12 +5,9 @@ from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
 
-"""
-# Ringkas.ID
-"""
-
+st.header('Selamat datang di Aplikasi Ringkkas.ID', divider='rainbow')
 # Judul Aplikasi
-st.title('Aplikasi Peringkas Teks')
+st.title('Solusi meringkas Cepat, Tepat, dan Akurat')
 
 # Input URL
 url_input = st.text_input('Masukkan URL Artikel')
