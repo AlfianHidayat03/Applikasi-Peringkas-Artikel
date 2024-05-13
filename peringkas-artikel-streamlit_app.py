@@ -10,13 +10,6 @@ st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 # Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
-url_input = st.text_input('Masukkan URL Artikel')
-# Fungsi untuk mengambil teks dari URL
-def get_text_from_url(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    return ' '.join([p.text for p in soup.find_all('p')])
-
 # Fungsi untuk membersihkan teks
 def clean_text(text):
     # Menghapus data dalam tanda kurung siku
@@ -42,6 +35,8 @@ def get_text_from_url(url):
 if st.button('Dapatkan Teks'):
     article_text = get_text_from_url(url_input)
     st.text_area('Teks Artikel:', article_text, height=250)
+
+
 
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
