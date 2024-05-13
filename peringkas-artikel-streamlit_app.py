@@ -34,12 +34,15 @@ def clean_text(text):
 
 
 # Menampilkan teks yang telah dibersihkan
-if st.button('Bersihkan Teks'):
-    if url_input:
-        cleaned_text = get_text_from_url(url_input)
-        st.write(cleaned_text)
-    else:
-        st.write('Silakan masukkan URL yang valid.')
+    if st.button('Dapatkan Teks'):
+        if url_input:
+            result_text = get_text_from_url(url_input)
+            st.text_area('Teks Artikel', result_text, height=300)
+        else:
+            st.error('Silakan masukkan URL yang valid.')
+
+if __name__ == "__main__":
+    main()
 #if st.button('Dapatkan Teks'):
 #    article_text = get_text_from_url(text)
 #   st.text_area('Teks Artikel:', article_text, height=250)
