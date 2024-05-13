@@ -10,19 +10,38 @@ st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 # Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
-summarizer = pipeline("summarization")
-# Input URL
-url = st.text_input('Masukkan URL artikel yang ingin diringkas:')
-if st.button('Ringkas'):
-    # Mengambil teks dari URL
-    article = requests.get(url).text
-    # Membuat objek BeautifulSoup
-    soup = BeautifulSoup(article, 'html.parser')
-    # Mengumpulkan teks dari elemen paragraf
-    paragraphs = soup.find_all('p')
-    article_text = ' '.join([p.get_text() for p in paragraphs])
-    # Melakukan peringkasan
-    summary = summarizer(article_text, max_length=130, min_length=30, do_sample=False)
+url_input = st.text_input('Masukkan URL Artikel')
+# Fungsi untuk mengambil teks dari URL
+def get_text_from_url(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    return ' '.join([p.text for p in soup.find_all('p')])
+
+# Fungsi untuk membersihkan teks
+def clean_text(text):
+    # Menghapus data dalam tanda kurung siku
+    text = re.sub(r'\[.*?\]', '', text)
+    # Menghapus spasi ekstra
+    text = re.sub(r'\s+', ' ', text)
+    return text
+
+# Menggunakan Streamlit untuk input URL
+url_input = st.text_input('Masukkan URL Artikel')
+
+# Fungsi untuk mengambil teks dari URL
+def get_text_from_url(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    # Menggabungkan teks dari semua paragraf
+    article_text = ' '.join([p.text for p in soup.find_all('p')])
+    # Membersihkan teks
+    cleaned_text = clean_text(article_text)
+    return cleaned_text
+
+# Menampilkan teks yang telah dibersihkan
+if st.button('Dapatkan Teks'):
+    article_text = get_text_from_url(url_input)
+    st.text_area('Teks Artikel:', article_text, height=250)
 
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
