@@ -12,6 +12,7 @@ st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
 # Menggunakan Streamlit untuk input URL
+def main():
 url_input = st.text_input('Masukkan URL Artikel')
 
 # Fungsi untuk mengambil teks dari URL
@@ -34,8 +35,6 @@ def clean_text(text):
 
 
 # Menampilkan teks yang telah dibersihkan
-    def main():
-    url_input = st.text_input('Masukkan URL Artikel')
     if st.button('Dapatkan Teks'):
         if url_input:
             result_text = get_text_from_url(url_input)
