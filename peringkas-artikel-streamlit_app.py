@@ -3,8 +3,10 @@ from transformers import pipeline
 
 # Inisialisasi pipeline peringkasan
 summarizer = pipeline("summarization")
-
-st.title('Aplikasi Peringkas Artikel dengan Streamlit')
+"""
+# Ringkas.ID
+"""
+st.title('Solusi Meringkas Artikel Cepat dan Akurat')
 
 st.write("Masukkan teks artikel di bawah ini dan aplikasi akan menghasilkan ringkasan.")
 
