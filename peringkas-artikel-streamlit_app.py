@@ -23,7 +23,7 @@ url_input = st.text_input('Masukkan URL Artikel')
 
 # Fungsi untuk mengambil teks dari URL
 def get_text_from_url(url):
-    response = re.get(url)
+    response = request.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     # Menggabungkan teks dari semua paragraf
     article_text = ' '.join([p.text for p in soup.find_all('p')])
