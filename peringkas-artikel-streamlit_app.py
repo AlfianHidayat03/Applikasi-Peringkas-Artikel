@@ -5,6 +5,7 @@ from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
+from gensim.summarization import summarize
 import re
 
 st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
@@ -25,15 +26,23 @@ def get_text_from_url(url):
     except requests.RequestException as e:
         return f"Request failed: {e}"
 
+# Fungsi untuk meringkas teks
+def summarize_text(text):
+    summarized_text = text[:500] + '...'  # Contoh sederhana, mengambil 500 karakter pertama
+    return summarized_text
+
 # Streamlit UI
 def main():
-    st.title('Ekstraktor Teks URL')
+    st.title('Ekstraktor dan Pemeringkas Teks URL')
     url_input = st.text_input('Masukkan URL Artikel')
     
     if st.button('Dapatkan Teks'):
         if url_input:
             result_text = get_text_from_url(url_input)
             st.text_area('Teks Artikel', result_text, height=300)
+            if st.button('Ringkas Teks'):
+                summarized_text = summarize_text(result_text)
+                st.text_area('Teks Dirangkum', summarized_text, height=150)
         else:
             st.error('Silakan masukkan URL yang valid.')
 
