@@ -28,6 +28,9 @@ def get_text_from_url(url):
 
 # Fungsi untuk meringkas teks
 def summarize_text(text):
+    # Ini hanya placeholder untuk fungsi meringkas teks
+    # Anda bisa menggunakan library seperti nltk atau gensim untuk meringkas teks
+    # Atau Anda bisa mengembangkan algoritma meringkas teks sendiri
     summarized_text = text[:500] + '...'  # Contoh sederhana, mengambil 500 karakter pertama
     return summarized_text
 
