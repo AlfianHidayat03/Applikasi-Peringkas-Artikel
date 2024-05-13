@@ -35,7 +35,6 @@ def clean_text(text):
 
 # Menampilkan teks yang telah dibersihkan
     def main():
-    st.title('Ekstraktor Teks URL')
     url_input = st.text_input('Masukkan URL Artikel')
     if st.button('Dapatkan Teks'):
         if url_input:
