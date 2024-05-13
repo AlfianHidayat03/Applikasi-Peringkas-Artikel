@@ -59,7 +59,7 @@ def read_docx(file):
     return text
 
 # Tombol Peringkas
-if st.button('Peringkas'):
+if st.button('Lihat Teks'):
     if url_input:
         # Proses URL
         text = get_text_from_url(url_input)
