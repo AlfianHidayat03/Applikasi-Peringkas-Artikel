@@ -23,7 +23,7 @@ if st.button('Ringkas'):
     
     # Melakukan peringkasan
     summary = summarizer(article_text, max_length=130, min_length=30, do_sample=False)
-
+    st.text_area('')
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
 
