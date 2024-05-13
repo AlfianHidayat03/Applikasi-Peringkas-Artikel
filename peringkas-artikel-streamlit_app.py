@@ -10,14 +10,6 @@ st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 # Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
-# Fungsi untuk membersihkan teks
-def clean_text(text):
-    # Menghapus data dalam tanda kurung siku
-    text = re.sub(r'\[.*?\]', '', text)
-    # Menghapus spasi ekstra
-    text = re.sub(r'\s+', ' ', text)
-    return text
-
 # Menggunakan Streamlit untuk input URL
 url_input = st.text_input('Masukkan URL Artikel')
 
@@ -30,6 +22,15 @@ def get_text_from_url(url):
     # Membersihkan teks
     cleaned_text = clean_text(article_text)
     return cleaned_text
+    
+# Fungsi untuk membersihkan teks
+def clean_text(text):
+    # Menghapus data dalam tanda kurung siku
+    text = re.sub(r'\[.*?\]', '', text)
+    # Menghapus spasi ekstra
+    text = re.sub(r'\s+', ' ', text)
+    return text
+
 
 # Menampilkan teks yang telah dibersihkan
 if st.button('Dapatkan Teks'):
