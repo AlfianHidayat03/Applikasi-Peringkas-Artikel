@@ -11,8 +11,8 @@ st.header('Selamat Datang di Aplikasi Ringkkas.ID', divider='rainbow')
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
 # Input URL
-def scraped_data : urllib.request.urlopen('https://www.unicef.org/indonesia/id/pendidikan-dan-remaja')
-    article = scraped_data.read()
+def st.scraped_data = urllib.request.urlopen('https://www.unicef.org/indonesia/id/pendidikan-dan-remaja')
+    article = st.craped_data.read()
     parsed_article = bs.BeautifulSoup(article,'lxml')
     paragraphs = parsed_article.find_all('p')
     article_text = ""
