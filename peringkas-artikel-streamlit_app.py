@@ -34,7 +34,7 @@ def clean_text(text):
 
 # Menampilkan teks yang telah dibersihkan
 if st.button('Dapatkan Teks'):
-    article_text = get_text_from_url(text)
+    article_text = get_text_from_url(url)
     st.text_area('Teks Artikel:', article_text, height=250)
 
 
