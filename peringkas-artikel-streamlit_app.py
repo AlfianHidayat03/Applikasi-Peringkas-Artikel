@@ -1,6 +1,6 @@
 import streamlit as st
 from io import StringIO
-import requests
+import re
 from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
