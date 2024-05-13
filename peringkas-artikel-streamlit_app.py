@@ -33,7 +33,7 @@ def get_text_from_url(url):
 
 # Menampilkan teks yang telah dibersihkan
 if st.button('Dapatkan Teks'):
-    article_text = get_text_from_url(url)
+    article_text = get_text_from_url(url_input)
     st.text_area('Teks Artikel:', article_text, height=250)
 
 
