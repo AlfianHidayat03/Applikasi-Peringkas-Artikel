@@ -6,7 +6,6 @@ from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
 from gensim.summarization import summarize
-
 import re
 
 
