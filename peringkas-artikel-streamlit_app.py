@@ -7,7 +7,7 @@ from docx import Document
 from bs4 import BeautifulSoup
 from gensim.summarization import summarize
 import re
-import triu from scipy.linalg
+from scipy.linalg import triu 
 
 
 
