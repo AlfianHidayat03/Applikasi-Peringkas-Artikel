@@ -6,4 +6,3 @@ python-docx
 beautifulsoup4
 gensim
 scipy
-pip install -r requirements.txt
