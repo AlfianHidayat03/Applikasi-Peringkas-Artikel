@@ -35,11 +35,6 @@ def clean_text(text):
 
 # Input URL
 url_input = st.text_input("Masukkan URL artikel")
-  if url_input:
-        # Proses URL
-        text = get_text_from_url(url_input)
-        text = clean_text(text)  # Membersihkan teks
-        st.write(text)  # Tampilkan teks yang diambil
       
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
@@ -62,6 +57,11 @@ def read_docx(file):
 
 # Tombol Peringkas
 text = ''
+ if url_input:
+        # Proses URL
+        text = get_text_from_url(url_input)
+        text = clean_text(text)  # Membersihkan teks
+        st.write(text)  # Tampilkan teks yang diambil
 if st.button('Lihat Teks'):
     elif uploaded_file:
         # Proses File
