@@ -5,9 +5,10 @@ from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
+from gensim.summarization import summarize
+
 import re
-from transformers import pipeline
-summarizer = pipeline("summarization")
+
 
 st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
 # Judul Aplikasi
