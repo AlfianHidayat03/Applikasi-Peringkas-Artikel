@@ -58,7 +58,7 @@ def read_docx(file):
 # Tombol Peringkas
 text = ''
 if st.button('Lihat Teks'):
-     if url_input:
+    if url_input:
         # Proses URL
         text = get_text_from_url(url_input)
         text = clean_text(text)  # Membersihkan teks
@@ -77,7 +77,6 @@ if st.button('Lihat Teks'):
             st.error('Format file tidak didukung.')
     else:
         st.error('Silakan masukkan URL atau unggah file.')
-
 # Fungsi peringkas teks
 def summarize_text(text):
     summarizer = pipeline("summarization")
