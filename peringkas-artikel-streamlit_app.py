@@ -5,12 +5,10 @@ from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
-from gensim.summarization import summarize
 import re
-
 st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
+# Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
-
 # Fungsi untuk mengambil teks dari URL
 def get_text_from_url(url):
     try:
@@ -26,38 +24,25 @@ def get_text_from_url(url):
         return f"Request failed: {e}"
 
 # Streamlit UI
-def main():
+def main(text):
     url_input = st.text_input('Masukkan URL Artikel')
-    
+
     if st.button('Tampilkan Teks'):
-        if url_input:
-            result_text = get_text_from_url(url_input)
-            st.text_area('Teks Artikel', result_text, height=300)
-        else:
+	@@ -37,14 +37,14 @@ def main(text):
             st.error('Silakan masukkan URL yang valid.')
 
 if __name__ == "__main__":
-    main()
+    main(text)
 
-    uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
-    
-    if st.button('Lihat Teks'):
-        if uploaded_file:
-            if uploaded_file.name.endswith('.pdf'):
-                text = read_pdf(uploaded_file)
-                st.write(text)
-            elif uploaded_file.name.endswith('.docx'):
-                text = read_docx(uploaded_file)
-                st.write(text)
-            else:
-                st.error('Format file tidak didukung.')
-        else:
-            st.error('Silakan unggah file.')
-
-    if st.button('Tampilkan Ringkasan'):
-        summary = summarize_text(text)
-        st.write(summary)
-
+# Fungsi untuk membersihkan teks
+    def clean_text(text):
+        # Menghapus data dalam tanda kurung siku
+        text = re.sub(r'\[.*?\]', '', text)
+        # Menghapus spasi ekstra
+        text = re.sub(r'\s+', ' ', text)
+        return text
+# Input File
+uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
 # Fungsi untuk membaca PDF
 def read_pdf(file):
     reader = PdfReader(file)
@@ -65,7 +50,6 @@ def read_pdf(file):
     for page in reader.pages:
         text += page.extract_text()
     return text
-
 # Fungsi untuk membaca DOCX
 def read_docx(file):
     doc = Document(file)
@@ -73,6 +57,29 @@ def read_docx(file):
     for para in doc.paragraphs:
         text += para.text
     return text
-
-if __name__ == "__main__":
-    main()
+# Tombol Peringkas
+if st.button('Lihat Teks'):
+    if url_input:
+        # Proses URL
+        text = get_text_from_url(url_input)
+        st.write(text)  # Tampilkan teks yang diambil
+    elif uploaded_file:
+        # Proses File
+        if uploaded_file.name.endswith('.pdf'):
+            text = read_pdf(uploaded_file)
+            st.write(text)  # Tampilkan teks PDF
+        elif uploaded_file.name.endswith('.docx'):
+            text = read_docx(uploaded_file)
+            st.write(text)  # Tampilkan teks DOCX
+        else:
+            st.error('Format file tidak didukung.')
+    else:
+        st.error('Silakan masukkan URL atau unggah file.')
+# Fungsi peringkas teks (Contoh sederhana)
+def summarize_text(text):
+    # Implementasi algoritma peringkasan Anda di sini
+    return text  # Sementara ini hanya mengembalikan teks asli
+# Tampilkan hasil peringkasan
+if st.button('Tampilkan Ringkasan'):
+    summary = summarize_text(text)
+    st.write(summary)
