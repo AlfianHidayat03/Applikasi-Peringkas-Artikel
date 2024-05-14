@@ -5,6 +5,7 @@ from transformers import pipeline
 from PyPDF2 import PdfReader
 from docx import Document
 from bs4 import BeautifulSoup
+from gensim.summarization import summarize
 import re
 
 st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
@@ -13,17 +14,20 @@ st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
 # Fungsi untuk mengambil teks dari URL
 def get_text_from_url(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    paragraphs = soup.find_all('p')
+    article_text = ' '.join(p.get_text() for p in paragraphs)
+    return article_text
+
+# Fungsi untuk meringkas teks
+def summarize_text(text):
     try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            paragraphs = soup.find_all('p')
-            article_text = ' '.join(p.get_text() for p in paragraphs)
-            return article_text
-        else:
-            return f"Error: Status code {response.status_code}"
-    except requests.RequestException as e:
-        return f"Request failed: {e}"
+        # Menggunakan gensim untuk meringkas teks
+        return summarize(text)
+    except ValueError:
+        # Jika teks terlalu pendek untuk diringkas
+        return "Teks terlalu pendek untuk diringkas."
 
 # Streamlit UI
 def main():
@@ -33,6 +37,11 @@ def main():
         if url_input:
             result_text = get_text_from_url(url_input)
             st.text_area('Teks Artikel', result_text, height=300)
+            
+            # Tambahkan tombol untuk meringkas teks
+            if st.button('Ringkas Teks'):
+                summarized_text = summarize_text(result_text)
+                st.text_area('Teks Dirangkum', summarized_text, height=150)
         else:
             st.error('Silakan masukkan URL yang valid.')
 
@@ -46,6 +55,7 @@ if __name__ == "__main__":
         # Menghapus spasi ekstra
         text = re.sub(r'\s+', 'result_text', text)
         return text
+        
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
 
