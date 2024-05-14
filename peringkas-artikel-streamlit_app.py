@@ -26,7 +26,7 @@ def get_text_from_url(url):
         return f"Request failed: {e}"
 
 # Streamlit UI
-def main(text):
+def main():
     url_input = st.text_input('Masukkan URL Artikel')
     
     if st.button('Tampilkan Teks'):
@@ -37,14 +37,14 @@ def main(text):
             st.error('Silakan masukkan URL yang valid.')
 
 if __name__ == "__main__":
-    main(text)
+    main()
     
 # Fungsi untuk membersihkan teks
-    def clean_text(text):
+    def clean_text(result_text):
         # Menghapus data dalam tanda kurung siku
-        text = re.sub(r'\[.*?\]', '', text)
+        text = re.sub(r'\[.*?\]', 'result_text', text)
         # Menghapus spasi ekstra
-        text = re.sub(r'\s+', ' ', text)
+        text = re.sub(r'\s+', 'result_text', text)
         return text
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
