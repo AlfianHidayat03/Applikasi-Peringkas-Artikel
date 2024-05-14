@@ -37,7 +37,7 @@ def main(text):
             st.error('Silakan masukkan URL yang valid.')
 
 if __name__ == "__main__":
-    main()
+    main(text)
     
 # Fungsi untuk membersihkan teks
     def clean_text(text):
