@@ -28,7 +28,7 @@ def main(text):
     url_input = st.text_input('Masukkan URL Artikel')
 
     if st.button('Tampilkan Teks'):
-	@@ -37,14 +37,14 @@ def main(text):
+def main(text):
             st.error('Silakan masukkan URL yang valid.')
 
 if __name__ == "__main__":
