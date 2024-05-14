@@ -24,11 +24,11 @@ def get_text_from_url(url):
         return f"Request failed: {e}"
 
 # Streamlit UI
-def main(text):
+def main():
     url_input = st.text_input('Masukkan URL Artikel')
 
     if st.button('Tampilkan Teks'):
-def main(text):
+def main():
             st.error('Silakan masukkan URL yang valid.')
 
 if __name__ == "__main__":
