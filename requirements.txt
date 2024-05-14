@@ -1,10 +1,7 @@
 streamlit
-gensim
-nltk
-transformers
 requests
+transformers
 PyPDF2
 python-docx
 beautifulsoup4
-lxml
-torch
+gensim
