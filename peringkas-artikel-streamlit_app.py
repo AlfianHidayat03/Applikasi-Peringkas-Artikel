@@ -7,6 +7,8 @@ from docx import Document
 from bs4 import BeautifulSoup
 from gensim.summarization import summarize
 import re
+import triu from scipy.linalg
+
 
 
 st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
