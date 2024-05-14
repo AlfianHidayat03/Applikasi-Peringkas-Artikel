@@ -35,7 +35,7 @@ def clean_text(text):
 
 # Input URL
 url_input = st.text_input("Masukkan URL artikel")
-#tombol lihat teks
+# Tombol lihat teks
 text = ''
 if st.button('Lihat Teks'):
     if url_input:
@@ -43,8 +43,6 @@ if st.button('Lihat Teks'):
         text = get_text_from_url(url_input)
         text = clean_text(text)  # Membersihkan teks
         st.write(text)  # Tampilkan teks yang diambil
-    elif uploaded_file:
-      
 # Input File
 uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
 
@@ -67,6 +65,7 @@ def read_docx(file):
 # Tombol lihat teks
 text = ''
 if st.button('Lihat Teks'):
+    elif uploaded_file:
         # Proses File
         if uploaded_file.name.endswith('.pdf'):
             text = read_pdf(uploaded_file)
