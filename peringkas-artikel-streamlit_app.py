@@ -23,17 +23,6 @@ def get_text_from_url(url):
     except requests.RequestException as e:
         return f"Request failed: {e}"
 
-# Streamlit UI
-def main():
-    url_input = st.text_input('Masukkan URL Artikel')
-
-    if st.button('Tampilkan Teks'):
-def main():
-            st.error('Silakan masukkan URL yang valid.')
-
-if __name__ == "__main__":
-    main(text)
-
 # Fungsi untuk membersihkan teks
     def clean_text(text):
         # Menghapus data dalam tanda kurung siku
