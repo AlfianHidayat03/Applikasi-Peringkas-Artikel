@@ -8,10 +8,7 @@ from bs4 import BeautifulSoup
 from gensim.summarization import summarize
 import re
 
-
-
 st.header('Selamat Datang di Aplikasi Ringkas.ID', divider='rainbow')
-# Judul Aplikasi
 st.title('Solusi Meringkas Cepat, Tepat, dan Akurat')
 
 # Fungsi untuk mengambil teks dari URL
@@ -25,13 +22,10 @@ def get_text_from_url(url):
 # Fungsi untuk meringkas teks
 def summarize_text(text):
     try:
-        # Menggunakan gensim untuk meringkas teks
         return summarize(text)
     except ValueError:
-        # Jika teks terlalu pendek untuk diringkas
         return "Teks terlalu pendek untuk diringkas."
 
-# Streamlit UI
 def main():
     url_input = st.text_input('Masukkan URL Artikel')
     
@@ -40,26 +34,30 @@ def main():
             result_text = get_text_from_url(url_input)
             st.text_area('Teks Artikel', result_text, height=300)
             
-            # Tambahkan tombol untuk meringkas teks
             if st.button('Ringkas Teks'):
                 summarized_text = summarize_text(result_text)
                 st.text_area('Teks Dirangkum', summarized_text, height=150)
         else:
             st.error('Silakan masukkan URL yang valid.')
 
-if __name__ == "__main__":
-    main()
+    uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
     
-# Fungsi untuk membersihkan teks
-    def clean_text(result_text):
-        # Menghapus data dalam tanda kurung siku
-        text = re.sub(r'\[.*?\]', 'result_text', text)
-        # Menghapus spasi ekstra
-        text = re.sub(r'\s+', 'result_text', text)
-        return text
-        
-# Input File
-uploaded_file = st.file_uploader("Unggah Dokumen (PDF atau DOCX)")
+    if st.button('Lihat Teks'):
+        if uploaded_file:
+            if uploaded_file.name.endswith('.pdf'):
+                text = read_pdf(uploaded_file)
+                st.write(text)
+            elif uploaded_file.name.endswith('.docx'):
+                text = read_docx(uploaded_file)
+                st.write(text)
+            else:
+                st.error('Format file tidak didukung.')
+        else:
+            st.error('Silakan unggah file.')
+
+    if st.button('Tampilkan Ringkasan'):
+        summary = summarize_text(text)
+        st.write(summary)
 
 # Fungsi untuk membaca PDF
 def read_pdf(file):
@@ -77,31 +75,5 @@ def read_docx(file):
         text += para.text
     return text
 
-# Tombol Peringkas
-if st.button('Lihat Teks'):
-    if url_input:
-        # Proses URL
-        text = get_text_from_url(url_input)
-        st.write(text)  # Tampilkan teks yang diambil
-    elif uploaded_file:
-        # Proses File
-        if uploaded_file.name.endswith('.pdf'):
-            text = read_pdf(uploaded_file)
-            st.write(text)  # Tampilkan teks PDF
-        elif uploaded_file.name.endswith('.docx'):
-            text = read_docx(uploaded_file)
-            st.write(text)  # Tampilkan teks DOCX
-        else:
-            st.error('Format file tidak didukung.')
-    else:
-        st.error('Silakan masukkan URL atau unggah file.')
-
-# Fungsi peringkas teks (Contoh sederhana)
-def summarize_text(text):
-    # Implementasi algoritma peringkasan Anda di sini
-    return text  # Sementara ini hanya mengembalikan teks asli
-
-# Tampilkan hasil peringkasan
-if st.button('Tampilkan Ringkasan'):
-    summary = summarize_text(text)
-    st.write(summary)
+if __name__ == "__main__":
+    main()
