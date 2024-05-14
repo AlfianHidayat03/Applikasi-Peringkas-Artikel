@@ -58,12 +58,12 @@ def read_docx(file):
 # Tombol Peringkas
 text = ''
 if st.button('Lihat Teks'):
-    elif uploaded_file:
-        if url_input:
+     if url_input:
         # Proses URL
         text = get_text_from_url(url_input)
         text = clean_text(text)  # Membersihkan teks
         st.write(text)  # Tampilkan teks yang diambil
+    elif uploaded_file:
         # Proses File
         if uploaded_file.name.endswith('.pdf'):
             text = read_pdf(uploaded_file)
